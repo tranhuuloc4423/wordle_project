@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setisInvalidWord } from "../redux/boardSlice";
 
@@ -13,10 +13,20 @@ const Message = ({ title, content }) => {
             window.location.reload();
         }
     };
+
+    const handleKeyboard = (e) => {
+        if (e.key === "Enter") {
+            handleSubmit();
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyboard);
+        return () => document.removeEventListener("keydown", handleKeyboard);
+    }, [handleKeyboard]);
     return (
         <>
             {close && (
-                <div className="message">
+                <div className="message" onKeyDown={handleKeyboard}>
                     <span className="btn-close" onClick={handleSubmit}>
                         &times;
                     </span>
