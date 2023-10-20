@@ -1,48 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Board from "./component/Board";
 import Keyboard from "./component/Keyboard";
 import "./App.css";
-import { createContext, useState } from "react";
-import boardDefault from "./Words";
-
-// export const AppContext = createContext();
-
+import { useDispatch, useSelector } from "react-redux";
+import { setListWord, setWord } from "./redux/boardSlice";
+import wordbank from "./wordle-bank.txt";
+import Message from "./component/Message";
 function App() {
-    // const boardInitial = useSelector((state) => state.board.board);
-    // const [board, setBoard] = useState(boardInitial);
-    // const [currAttempt, setCurrAttempt] = useState({
-    //     attempt: 0,
-    //     letterPos: 0,
-    // });
+    const dispatch = useDispatch();
+    // const url = " https://api.datamuse.com/words?sp=?????&max=1000";
+    const gameover = useSelector((state) => state.board.gameOver);
+    const guessedword = useSelector((state) => state.board.guessedWord);
+    const correctword = useSelector((state) => state.board.correctWord);
+    console.log("render");
 
-    const correctWord = "RIGHT";
+    const getRandomWord = (data) => {
+        const randomIndex = Math.floor(Math.random() * data.length);
+        return data[randomIndex];
+    };
 
-    // const onSelectLetter = (keyVal) => {
-    //     if (currAttempt.letterPos > 4) return;
-    //     const newBoard = [...board];
-    //     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
-    //     setBoard(newBoard);
-    //     setCurrAttempt({
-    //         ...currAttempt,
-    //         letterPos: currAttempt.letterPos + 1,
-    //     });
-    // };
+    const getData = async () => {
+        fetch(wordbank)
+            .then((response) => response.text())
+            .then((text) => {
+                const wordArray = text.split("\r\n");
+                dispatch(setListWord(wordArray));
+                const randomWord = getRandomWord(wordArray);
+                dispatch(setWord(randomWord?.toUpperCase()));
+            })
+            .catch((error) => {
+                console.log("Đã xảy ra lỗi khi đọc file:", error);
+            });
+    };
 
-    // const onDelete = () => {
-    //     if (currAttempt.letterPos === 0) return;
-    //     const newBoard = [...board];
-    //     newBoard[currAttempt.attempt][currAttempt.letterPos - 1] = "";
-    //     setBoard(newBoard);
-    //     setCurrAttempt({
-    //         ...currAttempt,
-    //         letterPos: currAttempt.letterPos - 1,
-    //     });
-    // };
-
-    // const onEnter = () => {
-    //     if (currAttempt.letterPos !== 5) return;
-    //     setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
-    // };
+    useEffect(() => {
+        getData();
+    }, []);
 
     return (
         <div className="App">
@@ -52,6 +45,22 @@ function App() {
             <div className="game">
                 <Board />
                 <Keyboard />
+                {gameover && (
+                    <>
+                        {guessedword && (
+                            <Message
+                                title={"Congratulations!"}
+                                content={`The correct word is ${correctword}\n Would you like to try again!`}
+                            />
+                        )}
+                        {!guessedword && (
+                            <Message
+                                title={"Unlucky you"}
+                                content={`The correct word is ${correctword}\n Would you like to try again!`}
+                            />
+                        )}
+                    </>
+                )}
             </div>
         </div>
     );

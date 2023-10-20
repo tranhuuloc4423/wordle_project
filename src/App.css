@@ -78,16 +78,29 @@ nav h1 {
     align-items: center;
 }
 
-#correct {
+.word-state {
+    animation: flip 1s linear;
+}
+
+.correct {
     background-color: #528d4e;
 }
 
-#almost {
+.almost {
     background-color: #b49f39;
 }
 
-#error {
+.error {
     background-color: #3a393c;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
 }
 
 .keyboard {
@@ -119,9 +132,54 @@ nav h1 {
     font-weight: 700;
 }
 
-#big {
+.big {
     width: 100px;
 }
 #disabled {
     background-color: #3a393c;
+}
+
+.message {
+    position: fixed;
+    width: 400px;
+    background: lightblue;
+    flex-direction: column;
+    overflow: hidden;
+    border: 2px solid black;
+    border-radius: 8px;
+    color: black;
+}
+
+.btn-close {
+    font-size: 4rem;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+}
+
+.btn-close:hover {
+    cursor: pointer;
+}
+
+.message-title {
+    margin-top: 50px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.message-content {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.btn-submit {
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-block: 20px;
+    border-radius: 4px;
+    cursor: pointer;
 }

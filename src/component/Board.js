@@ -8,9 +8,13 @@ function Board() {
         <div className="board">
             {/* loop way */}
             {board.map((row, indexRow) => (
-                <div className="row">
+                <div key={indexRow} className="row">
                     {row.map((col, indexCol) => (
-                        <Letter letterPos={indexCol} attemptVal={indexRow} />
+                        <Letter
+                            key={indexCol}
+                            letterPos={indexCol}
+                            attemptVal={indexRow}
+                        />
                     ))}
                 </div>
             ))}

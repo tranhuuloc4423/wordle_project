@@ -32,13 +32,17 @@ function Letter({ letterPos, attemptVal }) {
     const almost = !correct && letter !== "" && correctWord.includes(letter);
     const letterState =
         attempt > attemptVal &&
-        (correct ? "correct" : almost ? "almost" : "error");
+        (correct
+            ? "correct word-state"
+            : almost
+            ? "almost word-state"
+            : "error word-state");
     return (
         <motion.div
             animate={letter ? "filled" : "unfilled"}
             variants={variants}
         >
-            <div className="letter" id={letterState}>
+            <div className={`letter  ${letterState}`}>
                 {""}
                 {letter}
             </div>
