@@ -47,6 +47,7 @@ function App() {
         <div className="App">
             <nav>
                 <h1>Wordle</h1>
+                <h2>Another Wordle Clone</h2>
             </nav>
             <div className="game">
                 <Board />

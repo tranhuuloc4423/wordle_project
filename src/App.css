@@ -1,14 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
 .App {
     text-align: center;
     color: white;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
     background-color: #151924;
 }
 
@@ -20,6 +23,11 @@ nav h1 {
     margin: 0;
     color: white;
     font-size: 45px;
+}
+
+nav h2 {
+    color: rgb(131, 243, 255);
+    display: inline-block;
 }
 
 .game {
@@ -38,11 +46,10 @@ nav h1 {
 }
 
 .row {
-    flex: 33%;
     display: flex;
     flex-direction: row;
-    margin: 5px;
-    justify-content: space-around;
+    margin-block: 10px;
+    justify-content: space-evenly;
 }
 
 .letter {
@@ -58,6 +65,7 @@ nav h1 {
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+    font-weight: 600;
 }
 
 .word-state {
@@ -65,11 +73,11 @@ nav h1 {
 }
 
 .correct {
-    background-color: #528d4e;
+    background-color: #7ee277;
 }
 
 .almost {
-    background-color: #b49f39;
+    background-color: #ffd500;
 }
 
 .error {
