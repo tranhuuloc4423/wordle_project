@@ -23,10 +23,16 @@ function App() {
         fetch(wordbank)
             .then((response) => response.text())
             .then((text) => {
-                const wordArray = text.split("\r\n");
+                let wordArray;
+                if (text.includes("\r")) {
+                    wordArray = text.split("\r\n");
+                } else {
+                    wordArray = text.split("\n");
+                }
                 dispatch(setListWord(wordArray));
                 const randomWord = getRandomWord(wordArray);
                 dispatch(setWord(randomWord?.toUpperCase()));
+                console.log(wordArray);
             })
             .catch((error) => {
                 console.log("Đã xảy ra lỗi khi đọc file:", error);

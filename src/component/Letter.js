@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
 function Letter({ letterPos, attemptVal }) {
-    const dispatch = useDispatch();
     const board = useSelector((state) => state.board.board);
     const position = useSelector((state) => state.board.position);
     const attempt = useSelector((state) => state.board.attempt);
@@ -24,7 +23,6 @@ function Letter({ letterPos, attemptVal }) {
             },
         }),
     };
-
     const letter = board[attemptVal][letterPos];
 
     const correct = correctWord[letterPos] === letter;
@@ -42,7 +40,7 @@ function Letter({ letterPos, attemptVal }) {
             animate={letter ? "filled" : "unfilled"}
             variants={variants}
         >
-            <div className={`letter  ${letterState}`}>
+            <div className={`letter ${letterState}`}>
                 {""}
                 {letter}
             </div>
