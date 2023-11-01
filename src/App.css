@@ -114,7 +114,7 @@ nav h2 {
     display: grid;
     place-items: center;
     font-size: 1.2rem;
-    background-color: grey;
+    background-color: gray;
     color: white;
     cursor: pointer;
     font-weight: 700;
@@ -129,7 +129,7 @@ nav h2 {
 
 .message {
     position: fixed;
-    width: 400px;
+    padding: 20px;
     background: lightblue;
     flex-direction: column;
     overflow: hidden;
@@ -143,20 +143,22 @@ nav h2 {
     position: absolute;
     right: 10px;
     top: -10px;
+    transition: all linear 0.1s;
 }
 
 .btn-close:hover {
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 .message-title {
-    margin-top: 50px;
+    margin-block: 50px;
     font-size: 2rem;
     font-weight: 600;
 }
 
 .message-content {
-    margin-top: 30px;
+    margin-block: 10px;
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -170,4 +172,14 @@ nav h2 {
     margin-block: 20px;
     border-radius: 4px;
     cursor: pointer;
+    transition: all linear 0.1s;
+}
+
+.btn-submit:hover {
+    transform: scale(1.1);
+}
+
+.correct-word {
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
 }

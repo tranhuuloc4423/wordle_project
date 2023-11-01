@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setisInvalidWord } from "../redux/boardSlice";
 
-const Message = ({ title, content }) => {
+const Message = ({ title, correctWord }) => {
     const dispatch = useDispatch();
     const gameover = useSelector((state) => state.board.gameOver);
     const [close, setClose] = useState(true);
@@ -31,7 +31,13 @@ const Message = ({ title, content }) => {
                         &times;
                     </span>
                     <div className="message-title">{title}</div>
-                    <div className="message-content">{content}</div>
+                    <div className="message-content">
+                        The correct word is{" "}
+                        <span className="correct-word">{correctWord}</span>
+                    </div>
+                    <div className="message-content">
+                        Would you like to try again ?
+                    </div>
                     <button className="btn-submit" onClick={handleSubmit}>
                         OK
                     </button>

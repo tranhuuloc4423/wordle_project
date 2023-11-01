@@ -57,13 +57,13 @@ function App() {
                         {guessedword && (
                             <Message
                                 title={"Congratulations!"}
-                                content={`The correct word is ${correctword}\n Would you like to try again!`}
+                                correctWord={correctword}
                             />
                         )}
                         {!guessedword && (
                             <Message
                                 title={"Unlucky you"}
-                                content={`The correct word is ${correctword}\n Would you like to try again!`}
+                                correctWord={correctword}
                             />
                         )}
                     </>
