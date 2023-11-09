@@ -31,13 +31,19 @@ const Message = ({ title, correctWord }) => {
                         &times;
                     </span>
                     <div className="message-title">{title}</div>
-                    <div className="message-content">
-                        The correct word is{" "}
-                        <span className="correct-word">{correctWord}</span>
-                    </div>
-                    <div className="message-content">
-                        Would you like to try again ?
-                    </div>
+                    {correctWord && (
+                        <>
+                            <div className="message-content">
+                                The correct word is{" "}
+                                <span className="correct-word">
+                                    {correctWord}
+                                </span>
+                            </div>
+                            <div className="message-content">
+                                Would you like to try again ?
+                            </div>
+                        </>
+                    )}
                     <button className="btn-submit" onClick={handleSubmit}>
                         OK
                     </button>
